@@ -7,6 +7,7 @@
 int factorielle(int x){
   int res;
   if(x == 0) return 0;
+   res = x;
   while(x > 1){
     res *= (x-1);
     x = x-1;
@@ -19,7 +20,7 @@ int somme(int x){
   int res = 0;
   int i = 0;
   while(i <= x){
-    i++;       /*incrementation 
+    i++;       /*incrementation*/
     res += i-1;/* fin de boucle */
   }
   return res;
@@ -27,7 +28,7 @@ int somme(int x){
 
 //fonction maximum
 int maximum(int x, int y){
-  if(x = y || y > x)
+  if(x == y || y > x)
     return y;
   else 
     return x;
