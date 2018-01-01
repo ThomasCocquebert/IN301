@@ -1,11 +1,11 @@
-struct mur{ int longeur; int largeur; int sens};
-typedef struct mur MUR;
+struct elem{ int L; int H; int sens; struct elem* suiv;};
+typedef struct elem* LISTE;
 
-struct position{int x; int y};
+struct position{int x; int y;};
 typedef struct position POS;
 
-struct pile{int coup; struct pile* prec};
+struct pile{int coup; struct pile* prec;};
 typedef struct pile* PILE;
 
-struct slider{ int longeur; int largeur; POS joueur; POS sortie; int nombre_murs; MUR T[nombre_murs]; PILE coups};
+struct slider{ int L; int H; POS joueur; POS sortie; int nombre_murs; LISTE murs; PILE coups;};
 typedef struct slider SLIDER;

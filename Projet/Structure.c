@@ -1,6 +1,6 @@
 struct elem{
-	int longeur;
-	int largeur;
+	int L;
+	int H;
 	int sens;
 	struct elem* suiv;
 };
@@ -19,9 +19,11 @@ struct pile{
 typedef struct pile* PILE;
 
 struct slider{
-	int longeur;
-	int largeur;
+	int L;
+	int H;
 	POS joueur;
+	POS sortie;
+	int nombre_murs;
 	LISTE murs;
 	PILE coups;
 };
