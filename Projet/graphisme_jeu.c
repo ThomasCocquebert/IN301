@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "Structure.h"
 #include "uvsqgraphics.h"
+#include "fct_jeu.h"
 
 void affichage_grille(SLIDER S){
 	POINT a,b;
@@ -29,17 +30,39 @@ void affichage_sortie(SLIDER S){
 	a.x=S.sortie.x*30-15; a.y=S.sortie.y*30-15;
 	draw_circle(a,15,rouge);
 }
-
-int main(){
-	SLIDER S;
-	S.L=5;
-	S.H=5;
-	S.joueur.x=3; S.joueur.y=2;
-	S.sortie.x=4; S.sortie.y=1;
-	init_graphics(700,700);
+void calcul_murs(SLIDER S, POINT *a, POINT *b){
+	if(S.murs->sens==0){
+		a->x=S.murs->L*30; a->y=S.murs->H*30;
+		b->x=S.murs->L*30-30; b->y=S.murs->H*30;
+	}
+	if(S.murs->sens==3){
+		a->x=S.murs->L*30; a->y=S.murs->H*30;
+		b->x=S.murs->L*30; b->y=S.murs->H*30-30;
+	}
+	if(S.murs->sens==6){
+		a->x=S.murs->L*30; a->y=S.murs->H*30-30;
+		b->x=S.murs->L*30-30;b->y=S.murs->H*30-30;
+	}
+	if(S.murs->sens==9){
+		a->x=S.murs->L*30-30; a->y=S.murs->H*30;
+		b->x=S.murs->L*30-30; b->y=S.murs->H*30-30;
+	}
+}
+void affichage_mur(SLIDER S){
+	POINT a,b;
+	if(S.murs!=NULL){
+		while(S.murs->suiv!=NULL){
+			calcul_murs(S,&a,&b);
+			draw_line(a,b,rouge);
+			S.murs=S.murs->suiv;
+		}
+		calcul_murs(S,&a,&b);
+		draw_line(a,b,rouge);
+	}
+}
+void affichage(SLIDER S){
 	affichage_grille(S);
 	affichage_joueur(S);
 	affichage_sortie(S);
-	wait_escape();
-	exit(0);
+	affichage_mur(S);
 }
