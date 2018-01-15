@@ -1,19 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "uvsqgraphics.h"
 #include "Structure.h"
 #include "fct_jeu.h"
 #include "graphisme_jeu.h"
+#include "lecture_ecriture.h"
+#include "editeur.h"
 
-int main(){
-	init_graphics(700,700);
-	SLIDER S;
-	S.L=7; S.H=10; S.joueur.x=1; S.joueur.y=1; S.sortie.x=7; S.sortie.y=10;
-	S.murs=creer_liste();
-	S.murs=inser_mur(S.murs,3,6,0);
-	S.murs=inser_mur(S.murs,7,5,9);
-	affichage(S);
+int main(int argc, char *argv[])
+{
+	init_graphics(700, 700);
+	slider(argc, argv);
 	wait_escape();
-	libere_mem(S.murs);
 	exit(0);
 }

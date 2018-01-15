@@ -1,24 +1,24 @@
-struct elem{
+struct elem {
 	int L;
 	int H;
 	int sens;
-	struct elem* suiv;
+	struct elem *suiv;
 };
-typedef struct elem* LISTE;
+typedef struct elem *LISTE;
 
-struct position{
+struct position {
 	int x;
 	int y;
 };
 typedef struct position POS;
 
-struct pile{
-	int coup;
-	struct pile* prec;
+struct pile {
+	POS j;
+	struct pile *prec;
 };
-typedef struct pile* PILE;
+typedef struct pile *PILE;
 
-struct slider{
+struct slider {
 	int L;
 	int H;
 	POS joueur;
